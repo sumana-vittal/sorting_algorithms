@@ -1,0 +1,19 @@
+input : sequence of nos.
+applications :
+1.searching value is faster
+2.can find duplicates
+3.matching items in two or more(merge sort)
+4.find median n top k value quickly
+5.trucated top of sorted list in the universal UI like in following.
+google search results, gmail, facebook newsfeed, product search results, tweets, homes on airnb
+
+benefits
+algo design stratergies
+algo analysis of problem.
+
+Design stratergy:
+
+1. Brute Force: simplest and straightforward
+-locate smallest item n put it in right place by swap
+-here we are selecting one item from list which is smallest n placing by swap
+-so its called selection sort

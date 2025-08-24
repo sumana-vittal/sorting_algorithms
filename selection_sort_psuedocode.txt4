@@ -1,0 +1,12 @@
+function selection_sort(A) :  # A is array of unsorted elements
+
+for i in 0 to n-1:
+    minvalue = A[i]
+    minindex = i
+
+    for j in A i+1 to n-1:
+        if A[j] < minvalue:
+            minvalue = A[j]
+            minindex = j
+    swap A[minindex] , A[i]'
+return A
