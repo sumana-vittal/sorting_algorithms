@@ -1,0 +1,6 @@
+fun bubble_sort(arr):
+    for i in 0 to n-1:
+        for j n-1 to i+1
+            if arr[j-1] > arr[j]:
+                swap a[j-1], arr[j]
+    return arr
