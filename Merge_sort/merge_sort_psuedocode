@@ -1,0 +1,34 @@
+function helper(arr, start, end):
+    #leaf node
+    if start == end:
+        return
+
+    #arbittery node
+    mid = (start + end)/2
+
+    helper(arr, start, mid)
+    helper(arr, mid+1, end)
+
+    #merge the two sorted arrays
+    i = start
+    j = mid+1
+    aux = empty array of size end-start+1 to hold sorted values
+
+    while i <= mid and j <= end:
+        if i < j:
+            aux.append(i)
+            i++
+        else:
+            aux.append(j)
+            j++
+
+    while i != mid:
+        aux.append(i)
+    while j != end:
+        aux.append(j)
+
+return aux
+
+
+fun merge_sort():
+    helper(arr, 0,len(arr)-1)
