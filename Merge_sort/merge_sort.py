@@ -1,7 +1,7 @@
 def helper(arr, start, end):
     # lead node
     if start == end:
-        return arr
+        return
 
     mid = ( start + end )//2
     helper(arr, start, mid)
