@@ -9,9 +9,11 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v2
-
+        with:
+            fetch-depth: 0
+            
       - name: Run Super_linter
-        uses: github/super-linter@v2.4
+        uses: github/super-linter@v3
         env:
           DEFUALT_BRANCH: main
           GUTHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
