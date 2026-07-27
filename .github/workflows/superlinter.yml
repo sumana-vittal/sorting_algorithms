@@ -17,12 +17,6 @@ on:
       - synchronize
       - reopened
     paths:
-      # include markdown fi
-    types:
-      - opened
-      - synchronize
-      - reopened
-    paths:
       # include markdown files
       - "03-core-features/filters/*.md"
       # Exclude txt files
