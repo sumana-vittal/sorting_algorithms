@@ -1,28 +1,10 @@
-name: CI
+name: Hello World
 
-on: push
+on:
+  workflow_dispatch:
 
 jobs:
-  build:
-    runs-on: ubuntu-latest
-
+  say-hello-inline-bash:
+    runs-on: ubuntu-24.04
     steps:
-      - uses: actions/checkout@v2
-        env:
-          DEFUALT_BRANCH: main
-          GUTHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
-        
-      - name: Open 
-        run: |
-          ls -la
-          /Users/sumana/html_homework/html_files/index.html
-          ls -la
-          
-      - name: Run a multi-line script
-        run: |
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          ls -la
-          echo Add other actions to build,
-          echo test, and deploy your project.
-          ls -la
+      - run: echo "Hello from an inline bash script in a GitHub Action Workflow!"
