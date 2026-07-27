@@ -1,20 +1,33 @@
-name: Suoper-Linter
+name: CI
 
-on: push
+on:
+  push:
+    branches: [ master ]
 
 jobs:
-  super-lint:
-    name: Lint code base
-    runs-on: ubuntu-22.04
+  build:
+    runs-on: ubuntu-latest
+
     steps:
-      - name: Checkout code
-        uses: actions/checkout@v2
-        with:
-            fetch-depth: 0
-            
-      - name: Run Super_linter
-        uses: github/super-linter@v3
+      - uses: actions/checkout@v2
+      - name: Setup Node.js environment
+        uses: actions/setup-node@v2.4
         env:
           DEFUALT_BRANCH: main
           GUTHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
         
+      - name: Open 
+        run: |
+          ls -la
+          cd /Users/sumana/html_homework/html_files/
+          ls -la
+          
+      - name: Run a multi-line script
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          ls -la
+        run: |
+          echo Add other actions to build,
+          echo test, and deploy your project.
+          ls -la
