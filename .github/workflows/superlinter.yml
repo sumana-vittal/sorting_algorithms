@@ -1,35 +1,44 @@
-name: Passing Variables Between jobs
+name: Secrets and Environments
 on:
   workflow_dispatch:
 
 jobs:
-  producer:
+  staging-environment:
     runs-on: ubuntu-24.04
-
-    outputs:
-      foo: ${{ steps.generate-foo.outputs.foo }}
+    environment: staging
+    env:
+      # Inject repository-level secret & variable into the shell
+      EXAMPLE_REPOSITORY_SECRET: ${{ secrets.EXAMPLE_REPOSITORY_SECRET }}
+      EXAMPLE_REPOSITORY_VARIABLE: ${{ vars.EXAMPLE_REPOSITORY_VARIABLE }}
+      # Inject environment-level items into the shell
+      EXAMPLE_ENVIRONMENT_SECRET: ${{ secrets.EXAMPLE_ENVIRONMENT_SECRET }}
+      EXAMPLE_ENVIRONMENT_VARIABLE: ${{ vars.EXAMPLE_ENVIRONMENT_VARIABLE }}
     steps:
-      - name: Generate and export foo
-        id: generate-foo
+      - name: Inspect values inside job
         run: |
-          foo=bar
+          echo "Repo secret (masked):    $EXAMPLE_REPOSITORY_SECRET"
+          echo "Repo variable:           $EXAMPLE_REPOSITORY_VARIABLE"
+          echo "Env secret (masked):     $EXAMPLE_ENVIRONMENT_SECRET"
+          echo "Env variable:            $EXAMPLE_ENVIRONMENT_VARIABLE"
 
-          # 1) Step output (for job output)
-          echo "foo=${foo}" >> "$GITHUB_OUTPUT"
-
-          # 2) Job-scoped environment variable
-          echo "FOO=${foo}" >> "$GITHUB_ENV"
-
-      - name: Inspect values inside producer
-        run: |
-          echo "FOO (set via GITHUB_ENV):   $FOO"
-          echo "foo (step output):          ${{ steps.generate-foo.outputs.foo }}"
-
-  consumer:
+  production-environment:
     runs-on: ubuntu-24.04
-    needs: producer
+    environment: production
+    env:
+      # Inject repository-level secret & variable into the shell
+      EXAMPLE_REPOSITORY_SECRET: ${{ secrets.EXAMPLE_REPOSITORY_SECRET }}
+      EXAMPLE_REPOSITORY_VARIABLE: ${{ vars.EXAMPLE_REPOSITORY_VARIABLE }}
+      # Inject environment-level items into the shell
+      EXAMPLE_ENVIRONMENT_SECRET: ${{ secrets.EXAMPLE_ENVIRONMENT_SECRET }}
+      EXAMPLE_ENVIRONMENT_VARIABLE: ${{ vars.EXAMPLE_ENVIRONMENT_VARIABLE }}
     steps:
-      - name: Inspect values inside consumer (note FOO is unset)
+      - name: Inspect values inside job
         run: |
-          echo "Value from producer:        ${{ needs.producer.outputs.foo }}"
-          echo "FOO in consumer:            ${FOO:-<UNSET>}"
+          echo "Repo secret (masked):    $EXAMPLE_REPOSITORY_SECRET"
+          echo "Repo variable:           $EXAMPLE_REPOSITORY_VARIABLE"
+          echo "Env secret (masked):     $EXAMPLE_ENVIRONMENT_SECRET"
+          echo "Env variable:            $EXAMPLE_ENVIRONMENT_VARIABLE"
+          echo "Repo secret (masked):    $EXAMPLE_REPOSITORY_SECRET"
+          echo "Repo variable:           $EXAMPLE_REPOSITORY_VARIABLE"
+          echo "Env secret (masked):     $EXAMPLE_ENVIRONMENT_SECRET"
+          echo "Env variable:            $EXAMPLE_ENVIRONMENT_VARIABLE"
