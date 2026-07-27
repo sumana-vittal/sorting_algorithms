@@ -15,7 +15,7 @@ jobs:
       - name: Open 
         run: |
           ls -la
-          cd /Users/sumana/html_homework/html_files/
+          /Users/sumana/html_homework/html_files/
           ls -la
           
       - name: Run a multi-line script
