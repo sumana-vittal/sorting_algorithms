@@ -8,8 +8,6 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - name: Setup Node.js environment
-        uses: actions/setup-node@v2.4
         env:
           DEFUALT_BRANCH: main
           GUTHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
